@@ -1,14 +1,18 @@
 // src/types/OrganizationsEnum.ts
 
-export enum organizationsEnum {
-  IDF_North = "IDF - North", // אזור צפון של צה"ל
-  IDF_South = "IDF - South", // אזור דרום של צה"ל
-  IDF_Center = "IDF - Center", // אזור מרכז של צה"ל
-  IDF_West_Bank = "IDF - West Bank", // אזור יהודה ושומרון של צה"ל
-  Hezbollah = "Hezbollah", // ארגון חיזבאללה
-  Hamas = "Hamas", // ארגון חמאס
-  IRGC = "IRGC", // משמרות המהפכה האיראניים
-  Houthis = "Houthis", // ארגון החות'ים בתימן
+export enum OrganizationsEnum {
+  IDF = "IDF",
+  Hezbollah = "Hezbollah",
+  Hamas = "Hamas",
+  IRGC = "IRGC",
+  Houthis = "Houthis",
+}
+
+export enum IDFRegionsEnum {
+  North = "North",
+  South = "South",
+  Center = "Center",
+  WestBank = "West Bank",
 }
 
 export interface IOrganization {

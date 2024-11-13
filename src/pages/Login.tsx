@@ -16,7 +16,7 @@ export default function Login() {
 
   useEffect(() => {
     if (status === "SUCCESS" && user) {
-      navigate("/game");
+      navigate("/home");
     }
   }, [status, user]);
 
