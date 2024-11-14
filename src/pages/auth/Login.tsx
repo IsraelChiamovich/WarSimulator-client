@@ -1,9 +1,11 @@
 // src/pages/Login.tsx
 
 import { useEffect, useState } from "react";
-import { useAppDispatch, useAppSelector } from "../store/store";
+import { useAppDispatch, useAppSelector } from "../../store/store";
 import { useNavigate } from "react-router-dom";
-import { fetchLogin } from "../store/slices/userSlice";
+import { fetchLogin } from "../../store/slices/userSlice";
+import { Link } from "react-router-dom";
+import "../../index.css";
 
 export default function Login() {
   const [username, setUsername] = useState("");
@@ -48,6 +50,9 @@ export default function Login() {
           Login
         </button>
       </form>
+      <p>
+        Not registered? Register <Link to="/register">here</Link>
+      </p>
       {error && <p style={{ color: "red" }}>Login failed: {error}</p>}
     </div>
   );

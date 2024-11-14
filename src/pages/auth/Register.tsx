@@ -2,7 +2,12 @@
 
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { OrganizationsEnum, IDFRegionsEnum } from "../types/organizationsEnum";
+import {
+  OrganizationsEnum,
+  IDFRegionsEnum,
+} from "../../types/organizationsEnum";
+import { Link } from "react-router-dom";
+import "../../index.css";
 
 export default function Register() {
   const [username, setUsername] = useState("");
@@ -97,6 +102,9 @@ export default function Register() {
         <button type="button" onClick={handleRegister}>
           Register
         </button>
+        <p>
+        Are you registered? Log in<Link to="/login">here</Link>
+        </p>
       </form>
     </div>
   );

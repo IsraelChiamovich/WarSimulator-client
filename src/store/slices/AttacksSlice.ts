@@ -10,8 +10,19 @@ const initialState: attacksState = {
   attacks: [],
 };
 
-export const fetchAttacks = createAsyncThunk("attacks/fetchAttacks", async () => {
-  const response = await fetch("/api/attacks");
+export const fetchAttacks = createAsyncThunk("attacks/user-attacks", async () => {
+  const response = await fetch("http://localhost:3000/api/attacks/user-attacks", {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+    },
+  });
+
+  if (!response.ok) {
+    throw new Error("Failed to fetch attacks");
+  }
+
   const data: IAttack[] = await response.json();
   return data;
 });

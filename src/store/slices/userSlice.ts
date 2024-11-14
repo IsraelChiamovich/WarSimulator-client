@@ -1,6 +1,6 @@
 // src/store/slices/userSlice.ts
 
-import { ActionReducerMapBuilder, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import {ActionReducerMapBuilder,createAsyncThunk,createSlice,} from "@reduxjs/toolkit";
 import { DataStatus, userState } from "../../types/redux";
 import { IUser } from "../../types/user";
 
@@ -26,7 +26,7 @@ export const fetchLogin = createAsyncThunk(
         return thunkApi.rejectWithValue("Unable to login, please try again");
       }
 
-      const token = res.headers.get("Authorization");
+      const token = res.headers.get("Authorization")?.replace("Bearer ", "");
       if (token) {
         localStorage.setItem("token", token);
       } else {
@@ -34,7 +34,8 @@ export const fetchLogin = createAsyncThunk(
       }
 
       const data = await res.json();
-      return data;
+      data.user.isAttacker = data.user.organization !== "IDF";
+      return thunkApi.fulfillWithValue(data.user);
     } catch (error) {
       return thunkApi.rejectWithValue(
         error instanceof Error ? error.message : "Unknown error occurred"
@@ -46,7 +47,14 @@ export const fetchLogin = createAsyncThunk(
 const userSlice = createSlice({
   name: "user",
   initialState,
-  reducers: {},
+  reducers: {
+    logout: (state) => {
+      state.user = null;
+      state.status = DataStatus.IDLE;
+      state.error = null;
+      localStorage.removeItem("token");
+    },
+  },
   extraReducers: (builder: ActionReducerMapBuilder<userState>) => {
     builder
       .addCase(fetchLogin.pending, (state) => {
@@ -67,4 +75,5 @@ const userSlice = createSlice({
   },
 });
 
+export const { logout } = userSlice.actions;
 export default userSlice;
