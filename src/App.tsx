@@ -26,33 +26,6 @@ export default function App() {
       socket.off("attackLaunched");
     };
   }, [dispatch]);
-
-  //   socket.on("intercepted", (attack: IAttack) => {
-  //     dispatch(cancelAttack(attack));
-  //   });
-
-  //   return () => {
-  //     socket.off("launched");
-  //     socket.off("cancelAttack");
-  //     localStorage.removeItem("Atoken");
-  //     localStorage.removeItem("Dtoken");
-  //   };
-  // }, []);
-
-  // useEffect(() => {
-  //   const interval = setInterval(() => {
-  //     attacks
-  //       .filter((attack) => !attack.intercepted)
-  //       .forEach((attack) => {
-  //         if (attack.tymeToHit && attack.tymeToHit > 0) {
-  //           dispatch(
-  //             updateTimeLeft({ id: attack._id, timeLeft: attack.tymeToHit - 1 })
-  //           );
-  //         }
-  //       });
-  //   }, 1000);
-  //   return () => clearInterval(interval);
-  // }, [attacks, dispatch]);
   return (
     <div className="app">
       <BrowserRouter>

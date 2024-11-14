@@ -13,7 +13,6 @@ export default function Attack() {
   const [activeMissiles, setActiveMissiles] = useState<{ name: string; amount: number }[]>([]);
   const [regionAttacked, setRegionAttacked] = useState<string>("");
   const dispatch = useAppDispatch();
-  const attacksList = useAppSelector((state) => state.attacks.attacks) || [];
 
   useEffect(() => {
     dispatch(fetchAttacks());
