@@ -7,25 +7,9 @@ import Register from "./pages/auth/Register";
 import Login from "./pages/auth/Login";
 import AttackDashboard from "./pages/attackSide/AttackDashboard";
 import DefenceSide from "./pages/defenceSide/Defence";
-import { useEffect } from "react";
-import { socket } from "./main";
-import { IAttack } from "./types/attack";
-import { addAttack } from "./store/slices/AttacksSlice";
 
 export default function App() {
   const { user } = useAppSelector((state: RootState) => state.user);
-  const dispatch = useAppDispatch();
-  // const attacks = useAppSelector((state) => state.attacks.attacks);
-
-  // useEffect(() => {
-  //   socket.on("attackLaunched", (newAttack: IAttack) => {
-  //     dispatch(addAttack(newAttack));
-  //   });
-
-  //   return () => {
-  //     socket.off("attackLaunched");
-  //   };
-  // }, [dispatch]);
   return (
     <div className="app">
       <BrowserRouter>

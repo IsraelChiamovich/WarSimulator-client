@@ -16,11 +16,11 @@ export enum IDFRegionsEnum {
 }
 
 export interface IOrganization {
-  _id: string; // מזהה ייחודי עבור כל ארגון
-  name: string; // שם הארגון
+  _id: string;
+  name: string;
   resources: {
-    name: string; // שם המשאב (לדוגמה, סוג הטיל)
-    amount: number; // כמות המשאב הזמינה לארגון
+    name: string; 
+    amount: number; 
   }[];
-  budget: number; // התקציב הכולל של הארגון
+  budget: number; 
 }

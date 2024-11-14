@@ -4,20 +4,20 @@ import { IAttack } from "./attack";
 import { IUser } from "./user";
 
 export enum DataStatus {
-  LOADING = "LOADING", // מצב טעינה
-  SUCCESS = "SUCCESS", // טעינה הושלמה בהצלחה
-  FAILED = "FAILED", // כשלון בטעינה
-  IDLE = "IDLE", // מצב ריק/ללא טעינה
+  LOADING = "LOADING", 
+  SUCCESS = "SUCCESS", 
+  FAILED = "FAILED", 
+  IDLE = "IDLE", 
 }
 
 export interface userState {
-  error: string | null; // הודעת שגיאה במידה ויש (null אם אין)
-  status: DataStatus; // סטטוס הנתונים (טוען, הצלחה, כשלון או במצב המתנה)
-  user: null | IUser; // נתוני המשתמש או null אם לא קיים
+  error: string | null; 
+  status: DataStatus; 
+  user: null | IUser; 
 }
 
 export interface attacksState {
-  error: string | null; // הודעת שגיאה במידה ויש (null אם אין)
-  status: DataStatus; // סטטוס הנתונים
-  attacks: IAttack[]; // מערך של התקפות
+  error: string | null;
+  status: DataStatus;
+  attacks: IAttack[];
 }
