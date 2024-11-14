@@ -18,8 +18,6 @@ export const socket = io("http://localhost:3000", {
 
 createRoot(document.getElementById('root')!).render(
   <Provider store={store}>
-      <StrictMode>
         <App />
-      </StrictMode>
     </Provider>
 )
