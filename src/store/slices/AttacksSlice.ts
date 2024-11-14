@@ -27,6 +27,23 @@ export const fetchAttacks = createAsyncThunk("attacks/user-attacks", async () =>
   return data;
 });
 
+export const fetchAttacksByRegion = createAsyncThunk("attacks/region-attacks", async () => {
+  const response = await fetch("http://localhost:3000/api/attacks/region-attacks", {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+    },
+  });
+
+  if (!response.ok) {
+    throw new Error("Failed to fetch attacks");
+  }
+
+  const data: IAttack[] = await response.json();
+  return data;
+})
+
 const attacksSlice = createSlice({
   name: "attacks",
   initialState,
@@ -54,6 +71,17 @@ const attacksSlice = createSlice({
         state.status = DataStatus.FAILED;
         state.error = action.error.message || "Failed to fetch attacks";
       })
+      .addCase(fetchAttacksByRegion.pending, (state) => {
+        state.status = DataStatus.LOADING;
+      })
+      .addCase(fetchAttacksByRegion.fulfilled, (state, action: PayloadAction<IAttack[]>) => {
+        state.attacks = action.payload;
+        state.status = DataStatus.SUCCESS;
+      })
+      .addCase(fetchAttacksByRegion.rejected, (state, action) => {
+        state.status = DataStatus.FAILED;
+        state.error = action.error.message || "Failed to fetch attacks";
+      });
   },
 });
 

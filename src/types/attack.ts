@@ -8,4 +8,5 @@ export interface IAttack {
   attackerId: string; // מזהה של התוקף
   interceptedId?: string; // מזהה של מיירט, אם קיים
   intercepted: boolean;
+  status: "Launched" | "Hit" | "Intercepted";
 }
