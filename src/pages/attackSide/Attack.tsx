@@ -2,54 +2,34 @@
 
 import { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../store/store";
+import { createAttack } from "../../store/slices/AttacksSlice";
 import { IUser } from "../../types/user";
 import "../../index.css";
 
 export default function Attack() {
   const user = useAppSelector((state) => state.user.user) as IUser;
-  const [activeMissiles, setActiveMissiles] = useState<
-    { name: string; amount: number }[]
-  >([]);
+  const [activeMissiles, setActiveMissiles] = useState<{ name: string; amount: number }[]>([]);
   const [regionAttacked, setRegionAttacked] = useState<string>("");
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
-    setActiveMissiles(
-      () => user?.userMissiles.filter((missile) => missile.amount > 0) || []
-    );
+    setActiveMissiles(() => user?.userMissiles.filter((missile) => missile.amount > 0) || []);
   }, [user?.userMissiles]);
 
-  const handleLaunch = async (missileName: string) => {
+  const handleLaunch = (missileName: string) => {
     if (!regionAttacked) {
       console.error("Please select a region to attack.");
       return;
     }
 
-    try {
-      const response = await fetch("http://localhost:3000/api/attacks/launch", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-        body: JSON.stringify({
-          missileName,
-          attackerId: user._id,
-          regionAttacked,
-        }),
-      });
-
-      if (!response.ok) throw new Error("Failed to launch missile");
-
-      setActiveMissiles((prevMissiles) =>
-        prevMissiles.map((missile) =>
-          missile.name === missileName && missile.amount > 0
-            ? { ...missile, amount: missile.amount - 1 }
-            : missile
-        )
-      );
-    } catch (error) {
-      console.error("Error launching missile:", error);
-    }
+    dispatch(createAttack({ missileName, regionAttacked, attackerId: user._id }));
+    setActiveMissiles((prevMissiles) =>
+      prevMissiles.map((missile) =>
+        missile.name === missileName && missile.amount > 0
+          ? { ...missile, amount: missile.amount - 1 }
+          : missile
+      )
+    );
   };
 
   return (
@@ -57,10 +37,7 @@ export default function Attack() {
       <h2>Attack Page</h2>
       <h3>Organization: {user.organization}</h3>
       <h3>Location:</h3>
-      <select
-        value={regionAttacked}
-        onChange={(e) => setRegionAttacked(e.target.value)}
-      >
+      <select value={regionAttacked} onChange={(e) => setRegionAttacked(e.target.value)}>
         <option value="">Select Region</option>
         <option value="North">North</option>
         <option value="South">South</option>

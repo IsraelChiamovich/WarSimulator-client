@@ -7,4 +7,5 @@ export interface IAttack {
   regionAttacked: string; // אזור התקפה
   attackerId: string; // מזהה של התוקף
   interceptedId?: string; // מזהה של מיירט, אם קיים
+  intercepted: boolean;
 }

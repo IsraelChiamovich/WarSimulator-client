@@ -8,7 +8,13 @@ import { Provider } from 'react-redux'
 import store from './store/store.ts'
 import { io } from 'socket.io-client'
 
-export const socket = io(`http://localhost:3000`)
+const token = localStorage.getItem("token");
+
+export const socket = io("http://localhost:3000", {
+    auth: {
+        token,
+    },
+});
 
 createRoot(document.getElementById('root')!).render(
   <Provider store={store}>

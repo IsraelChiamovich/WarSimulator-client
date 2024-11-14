@@ -2,8 +2,9 @@
 
 import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../../store/store";
-import { fetchAttacks } from "../../store/slices/AttacksSlice";
+import { fetchAttacks, addAttack } from "../../store/slices/AttacksSlice";
 import { IAttack } from "../../types/attack";
+import { socket } from "../../main";
 import "../../index.css";
 
 export default function AttackLaunchs() {
@@ -11,8 +12,19 @@ export default function AttackLaunchs() {
   const { attacks, status, error } = useAppSelector((state) => state.attacks);
 
   useEffect(() => {
+    // שליפה ראשונית של התקיפות מהשרת
     dispatch(fetchAttacks());
-  }, []);
+
+    // האזנה לאירוע של תקיפות חדשות מ-Socket.IO
+    socket.on("attackLaunched", (newAttack: IAttack) => {
+      dispatch(addAttack(newAttack));
+    });
+
+    // ניתוק ההאזנה בעת יציאת הקומפוננטה
+    return () => {
+      socket.off("attackLaunched");
+    };
+  }, [dispatch]);
 
   return (
     <div className="attack-launchs">
