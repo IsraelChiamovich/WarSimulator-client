@@ -136,3 +136,105 @@ a {
 a:hover {
   text-decoration: underline;
 }
+
+.attack-dashboard {
+  text-align: center;
+  margin: 20px;
+  font-family: Arial, sans-serif;
+}
+
+hr {
+  margin: 20px 0;
+  border: none;
+  border-top: 1px solid #ccc;
+}
+
+.defense {
+  text-align: center;
+  font-family: Arial, sans-serif;
+  margin: 20px;
+}
+
+.attack-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 20px 0;
+}
+
+.attack-list li {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+  background-color: #eaf2f8;
+  border-radius: 5px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.attack-list li:last-child {
+  border-bottom: none;
+}
+
+.attack-list select {
+  padding: 8px;
+  font-size: 1rem;
+  margin-top: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.attack-list button {
+  padding: 8px 12px;
+  font-size: 1rem;
+  margin-top: 10px;
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.attack-list button:hover {
+  background-color: #c82333;
+}
+
+.attack-launchs {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.attack-launchs h2 {
+  color: #00509e;
+  margin-bottom: 20px;
+}
+
+.attack-launchs .attack-list li {
+  padding: 10px;
+  margin: 5px 0;
+  background-color: #f0f8ff;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.attack-launchs button {
+  padding: 8px 12px;
+  font-size: 1rem;
+  background-color: #00509e;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.attack-launchs button:hover {
+  background-color: #003f7f;
+}
+
+.missile-list {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
