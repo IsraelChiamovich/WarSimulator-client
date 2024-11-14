@@ -2,7 +2,7 @@
 
 export interface IAttack {
   _id: string; // מזהה ייחודי עבור כל התקפה
-  name: string; // שם ההתקפה
+  name: string; // שם הטיל
   timeToHit: number; // הזמן עד לפגיעה (בשניות או כל יחידת זמן אחרת)
   regionAttacked: string; // אזור התקפה
   attackerId: string; // מזהה של התוקף
